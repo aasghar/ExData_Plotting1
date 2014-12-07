@@ -1,29 +1,34 @@
 #plot 4
-
+# read data table
 data <- read.table("household_power_consumption.txt", sep = ";", header = TRUE, na.strings=c("NA", "-", "?"))
 
+# combine Date and time column and convert to POSIXlt type
 data$DT <- paste(data$Date, data$Time, sep = " ")
 data$DT <- strptime(data$DT, "%d/%m/%Y %T")
 
+# convert Date column to POSIXlt type
 data$Date <- strptime(data$Date, "%d/%m/%Y")
 
+# # only select dates that need to be analyzed
 data <- subset(data, data$Date == "2007-02-01" | data$Date =="2007-02-02")
 
+# convert Global_active_power to numeric
 data$Global_active_power <- as.numeric(data$Global_active_power)
 
+# plot directly to png file
 png(filename = "plot4.png", width = 480, height = 480)
 
 par(mfrow = c(2, 2))
-#topright
+# plot on top left
 plot(data$DT, data$Global_active_power, type ="l", 
      xlab = "", ylab = "Global Active Power")
 
-#bottom right
+# plot on top right
 
 plot(data$DT, data$Voltage, type = "l", xlab = "datetime", 
      ylab = "Voltage")
 
-#top left
+# plot on bottom left
 
 plot(data$DT, data$Sub_metering_1, type ="l", 
      xlab = "", ylab = "Energy sub metering")
@@ -43,5 +48,3 @@ plot(data$DT, data$Global_reactive_power, type = "l", xlab = "datetime",
 
 
 dev.off()
-
-?par

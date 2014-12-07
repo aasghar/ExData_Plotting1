@@ -1,16 +1,19 @@
 #Plot 3
 
+# read data table
 data <- read.table("household_power_consumption.txt", sep = ";", header = TRUE, na.strings=c("NA", "-", "?"))
 
+# combine Date and time column and convert to POSIXlt type
 data$DT <- paste(data$Date, data$Time, sep = " ")
 data$DT <- strptime(data$DT, "%d/%m/%Y %T")
 
+# convert Date column to POSIXlt type
 data$Date <- strptime(data$Date, "%d/%m/%Y")
 
+# # only select dates that need to be analyzed
 data <- subset(data, data$Date == "2007-02-01" | data$Date =="2007-02-02")
 
-data$Global_active_power <- as.numeric(data$Global_active_power)
-
+# plot directly to png file
 png(filename = "plot3.png", width = 480, height = 480)
 plot(data$DT, data$Sub_metering_1, type ="l", 
      xlab = "", ylab = "Energy sub metering", cex.lab = 1, 
