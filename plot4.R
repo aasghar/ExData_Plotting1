@@ -18,20 +18,22 @@ data$Global_active_power <- as.numeric(data$Global_active_power)
 # plot directly to png file
 png(filename = "plot4.png", width = 480, height = 480)
 
+par(bg = NA)
+
 par(mfrow = c(2, 2))
 # plot on top left
 plot(data$DT, data$Global_active_power, type ="l", 
-     xlab = "", ylab = "Global Active Power")
+     xlab = "", ylab = "Global Active Power", bg = "transparent")
 
 # plot on top right
 
 plot(data$DT, data$Voltage, type = "l", xlab = "datetime", 
-     ylab = "Voltage")
+     ylab = "Voltage", bg = "transparent")
 
 # plot on bottom left
 
 plot(data$DT, data$Sub_metering_1, type ="l", 
-     xlab = "", ylab = "Energy sub metering")
+     xlab = "", ylab = "Energy sub metering", bg = "transparent")
 
 lines(data$DT, data$Sub_metering_2, col = "red")
 
@@ -44,7 +46,7 @@ legend("topright", pch = c(NA, NA, NA), lwd = 1, col = c("black", "red", "blue")
 #bottom right
 
 plot(data$DT, data$Global_reactive_power, type = "l", xlab = "datetime", 
-     ylab = "Global_reactive_power", lwd = 0.25)
+     ylab = "Global_reactive_power", lwd = 0.25, bg = "transparent")
 
 
 dev.off()

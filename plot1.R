@@ -15,8 +15,10 @@ data$Global_active_power <- as.numeric(data$Global_active_power)
 # plot directly png file
 png(filename = "plot1.png", width = 480, height = 480)
 
+par(bg = NA)
+
 hist(data$Global_active_power, xlab = "Global Active Power (kilowatts)",
      ylab = "Frequency", main = "Global Active Power", col = "red", breaks = 20,
-     ylim = c(0, 1200), cex.lab = 1, cex.axis = 0.9)
+     ylim = c(0, 1200), cex.lab = 1, cex.axis = 0.9, bg = "transparent")
 
 dev.off()

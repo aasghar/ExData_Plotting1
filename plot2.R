@@ -18,8 +18,11 @@ data$Global_active_power <- as.numeric(data$Global_active_power)
 
 # plot directly to png file
 png(filename = "plot2.png", width = 480, height = 480)
+
+par(bg = NA)
+
 plot(data$DT, data$Global_active_power, type ="l", 
      xlab = "", ylab = "Global Active Power (kilowatts)", cex.lab = 1, 
-     cex.axis = 0.9)
+     cex.axis = 0.9, bg = "transparent")
 
 dev.off()
